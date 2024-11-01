@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOOJH AI</title>
+    <style>
+        /* Basic page styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f4ff;
+            overflow: hidden;
+            position: relative;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            z-index: 1;
+            color: #333;
+        }
+        .container h2 {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .container h1 {
+            font-size: 3em;
+            color: #2d58c0;
+        }
+        .container p {
+            color: #666;
+        }
+        .container .notify-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #2d58c0;
+            color: #fff;
+            font-size: 1em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+        
+        /* Neural Network Background */
+        .neural-network {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .node {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #2d58c0;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(45, 88, 192, 0.5);
+            animation: pulse 2s infinite alternate;
+        }
+        .connection {
+            position: absolute;
+            width: 2px;
+            background: linear-gradient(to bottom, #2d58c0, #9fc9ff);
+            animation: gradient-flow 2s infinite alternate;
+        }
+
+        /* Node animation */
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            to {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        /* Gradient flow animation */
+        @keyframes gradient-flow {
+            from {
+                opacity: 0.3;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>WE'RE STILL</h2>
+        <h1>Cooking Our Website</h1>
+        <p>We are going to launch our website Very Soon.<br>Stay Tuned.</p>
+        
+        <div style="margin-top: 20px;">
+            <h1>SOOJH AI</h1>
+            <p>For enquiries on our existing/upcoming products, reach us at:</p>
+            <p>hello@soojhai.in</p>
+        </div>
+        
+        <a href="mailto:hello@soojhai.in" class="notify-btn">Notify Me</a>
+    </div>
+
+    <!-- Neural Network Background Animation -->
+    <div class="neural-network">
+        <!-- Nodes -->
+        <div class="node" style="top: 10%; left: 20%;"></div>
+        <div class="node" style="top: 30%; left: 50%;"></div>
+        <div class="node" style="top: 50%; left: 30%;"></div>
+        <div class="node" style="top: 70%; left: 60%;"></div>
+        <div class="node" style="top: 90%; left: 40%;"></div>
+
+        <!-- Connections (animated gradients) -->
+        <div class="connection" style="top: 10%; left: 20%; height: 150px; transform: rotate(45deg);"></div>
+        <div class="connection" style="top: 30%; left: 50%; height: 100px; transform: rotate(-30deg);"></div>
+        <div class="connection" style="top: 50%; left: 30%; height: 150px; transform: rotate(60deg);"></div>
+        <div class="connection" style="top: 70%; left: 60%; height: 150px; transform: rotate(-45deg);"></div>
+        <div class="connection" style="top: 90%; left: 40%; height: 100px; transform: rotate(30deg);"></div>
+    </div>
+</body>
+</html>
