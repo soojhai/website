@@ -4,129 +4,340 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOOJH AI</title>
-    <style>
-        /* Basic page styling */
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f4ff;
-            overflow: hidden;
-            position: relative;
-            color: #333;
-        }
-        .container {
-            text-align: center;
-            z-index: 1;
-            color: #333;
-        }
-        .container h2 {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 10px;
-        }
-        .container h1 {
-            font-size: 3em;
-            color: #2d58c0;
-        }
-        .container p {
-            color: #666;
-        }
-        .container .notify-btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #2d58c0;
-            color: #fff;
-            font-size: 1em;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            margin-top: 20px;
-            text-decoration: none;
-        }
-        
-        /* Neural Network Background */
-        .neural-network {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
-        .node {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #2d58c0;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(45, 88, 192, 0.5);
-            animation: pulse 2s infinite alternate;
-        }
-        .connection {
-            position: absolute;
-            width: 2px;
-            background: linear-gradient(to bottom, #2d58c0, #9fc9ff);
-            animation: gradient-flow 2s infinite alternate;
-        }
-
-        /* Node animation */
-        @keyframes pulse {
-            from {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-            to {
-                transform: scale(1.5);
-                opacity: 1;
-            }
-        }
-
-        /* Gradient flow animation */
-        @keyframes gradient-flow {
-            from {
-                opacity: 0.3;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-    </style>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSJ3aGl0ZSIvPgogIDx0ZXh0IHg9IjE2IiB5PSIyMiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1zaXplPSI2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMjU2M0VCIj5TT09KSCBBSTwvdGV4dD4KPC9zdmc+" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div class="container">
-        <h2>WE'RE STILL</h2>
-        <h1>Cooking Our Website</h1>
-        <p>We are going to launch our website Very Soon.<br>Stay Tuned.</p>
-        
-        <div style="margin-top: 20px;">
-            <h1>SOOJH AI</h1>
-            <p>For enquiries on our existing/upcoming products, reach us at:</p>
-            <p>hello@soojhai.in</p>
-        </div>
-        
-        <a href="mailto:hello@soojhai.in" class="notify-btn">Notify Me</a>
-    </div>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
 
-    <!-- Neural Network Background Animation -->
-    <div class="neural-network">
-        <!-- Nodes -->
-        <div class="node" style="top: 10%; left: 20%;"></div>
-        <div class="node" style="top: 30%; left: 50%;"></div>
-        <div class="node" style="top: 50%; left: 30%;"></div>
-        <div class="node" style="top: 70%; left: 60%;"></div>
-        <div class="node" style="top: 90%; left: 40%;"></div>
+        // Typewriter Effect Component
+        const TypewriterEffect = ({ text, className }) => {
+            const [displayText, setDisplayText] = useState('');
+            const [currentIndex, setCurrentIndex] = useState(0);
+            
+            useEffect(() => {
+                if (currentIndex < text.length) {
+                    const timeout = setTimeout(() => {
+                        setDisplayText(prev => prev + text[currentIndex]);
+                        setCurrentIndex(prev => prev + 1);
+                    }, 50);
+                    
+                    return () => clearTimeout(timeout);
+                }
+            }, [currentIndex, text]);
+            
+            return (
+                <h1 className={className}>
+                    {displayText}
+                    <span className="animate-pulse">|</span>
+                </h1>
+            );
+        };
 
-        <!-- Connections (animated gradients) -->
-        <div class="connection" style="top: 10%; left: 20%; height: 150px; transform: rotate(45deg);"></div>
-        <div class="connection" style="top: 30%; left: 50%; height: 100px; transform: rotate(-30deg);"></div>
-        <div class="connection" style="top: 50%; left: 30%; height: 150px; transform: rotate(60deg);"></div>
-        <div class="connection" style="top: 70%; left: 60%; height: 150px; transform: rotate(-45deg);"></div>
-        <div class="connection" style="top: 90%; left: 40%; height: 100px; transform: rotate(30deg);"></div>
-    </div>
+        // Neural Network Animation Component
+        const NeuralNetworkAnimation = () => {
+            const canvasRef = useRef(null);
+            
+            useEffect(() => {
+                const canvas = canvasRef.current;
+                const ctx = canvas.getContext('2d');
+                let nodes = [];
+                let connections = [];
+                let animationFrameId;
+                
+                const resizeCanvas = () => {
+                    canvas.width = canvas.offsetWidth;
+                    canvas.height = canvas.offsetHeight;
+                };
+                
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+                
+                const createNodes = () => {
+                    nodes = [];
+                    // Increased number of nodes
+                    const numNodes = Math.floor(canvas.width * canvas.height / 8000);
+                    
+                    for (let i = 0; i < numNodes; i++) {
+                        nodes.push({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            vx: (Math.random() - 0.5) * 0.8, // Increased speed
+                            vy: (Math.random() - 0.5) * 0.8,
+                        });
+                    }
+                };
+                
+                const updateConnections = () => {
+                    connections = [];
+                    const maxDistance = 180; // Increased connection distance
+                    
+                    for (let i = 0; i < nodes.length; i++) {
+                        for (let j = i + 1; j < nodes.length; j++) {
+                            const dx = nodes[i].x - nodes[j].x;
+                            const dy = nodes[i].y - nodes[j].y;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+                            
+                            if (distance < maxDistance) {
+                                connections.push({
+                                    from: nodes[i],
+                                    to: nodes[j],
+                                    opacity: 1 - (distance / maxDistance)
+                                });
+                            }
+                        }
+                    }
+                };
+                
+                const updateNodes = () => {
+                    nodes.forEach(node => {
+                        node.x += node.vx;
+                        node.y += node.vy;
+                        
+                        if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                        if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                    });
+                };
+                
+                const draw = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    // Draw connections with increased opacity
+                    connections.forEach(connection => {
+                        ctx.beginPath();
+                        ctx.moveTo(connection.from.x, connection.from.y);
+                        ctx.lineTo(connection.to.x, connection.to.y);
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${connection.opacity * 0.4})`; // Increased opacity
+                        ctx.lineWidth = 1.5; // Thicker lines
+                        ctx.stroke();
+                    });
+                    
+                    // Draw nodes with increased size
+                    nodes.forEach(node => {
+                        ctx.beginPath();
+                        ctx.arc(node.x, node.y, 3, 0, Math.PI * 2); // Increased node size
+                        ctx.fillStyle = 'rgba(59, 130, 246, 0.7)'; // Increased opacity
+                        ctx.fill();
+                    });
+                };
+                
+                const animate = () => {
+                    updateNodes();
+                    updateConnections();
+                    draw();
+                    animationFrameId = requestAnimationFrame(animate);
+                };
+                
+                createNodes();
+                animate();
+                
+                return () => {
+                    window.removeEventListener('resize', resizeCanvas);
+                    cancelAnimationFrame(animationFrameId);
+                };
+            }, []);
+            
+            return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full opacity-30" />;
+        };
+
+        // Main Website Component
+        const Website = () => {
+            const [isScrolled, setIsScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    setIsScrolled(window.scrollY > 20);
+                };
+
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const services = [
+                {
+                    title: "Document Intelligence",
+                    description: "Advanced document processing and analysis using cutting-edge AI technologies to extract insights and automate workflows."
+                },
+                {
+                    title: "AI Services",
+                    description: "Custom AI solutions tailored to your business needs, from predictive analytics to computer vision and natural language processing."
+                },
+                {
+                    title: "Chatbot Development",
+                    description: "Intelligent conversational AI systems that enhance customer engagement and streamline support operations."
+                },
+                {
+                    title: "AI Consulting",
+                    description: "Expert guidance on AI strategy, implementation, and optimization to drive your business transformation."
+                }
+            ];
+
+            return (
+                <div className="min-h-screen bg-gray-50">
+                    {/* Navigation */}
+                    <nav className={`fixed w-full z-50 transition-all duration-300 ${
+                        isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
+                    }`}>
+                        <div className="container mx-auto px-6 flex justify-between items-center">
+                            <a href="#" className="text-blue-600 font-bold text-2xl">SOOJH AI</a>
+                            <div className="space-x-8">
+                                <a href="#about" className="text-gray-600 hover:text-blue-600 transition-colors duration-300">About Us</a>
+                                <a href="#services" className="text-gray-600 hover:text-blue-600 transition-colors duration-300">Services</a>
+                                <a href="#products" className="text-gray-600 hover:text-blue-600 transition-colors duration-300">Products</a>
+                                <a href="#contact" className="text-gray-600 hover:text-blue-600 transition-colors duration-300">Contact</a>
+                            </div>
+                        </div>
+                    </nav>
+
+                    {/* Hero Section */}
+                    <header className="bg-white pt-24 relative overflow-hidden min-h-screen flex items-center">
+                        <NeuralNetworkAnimation />
+                        <div className="container mx-auto px-6 relative z-10">
+                            <div className="text-center">
+                                <TypewriterEffect 
+                                    text="AI-powered innovation—intelligent solutions, transformative products."
+                                    className="text-6xl font-bold text-gray-900 mb-8 leading-tight"
+                                />
+                                <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                                    Get Started
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* About Us Section */}
+                    <section className="py-20 bg-white" id="about">
+                        <div className="container mx-auto px-6">
+                            <div className="max-w-4xl mx-auto">
+                                <h2 className="text-4xl font-bold text-center text-gray-900 mb-8">
+                                        About Us
+                                </h2>
+                                <p className="text-xl text-gray-600 mb-12 leading-relaxed">
+                                    We're a collective of visionary AI researchers, deep learning specialists, and MLOps engineers 
+                                    united by a singular mission: transforming complex AI concepts into powerful, scalable solutions. 
+                                    With our deep expertise in neural architectures and cutting-edge algorithms, we're not just 
+                                    implementing AI—we're shaping its future.
+                                </p>
+                                <div className="grid md:grid-cols-3 gap-8">
+                                    <div className="bg-gray-50 p-6 rounded-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                                        <h3 className="text-lg font-semibold text-blue-600 mb-3">Research Excellence</h3>
+                                        <p className="text-gray-600">Pioneering breakthrough AI technologies through rigorous research and innovation.</p>
+                                    </div>
+                                    <div className="bg-gray-50 p-6 rounded-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                                        <h3 className="text-lg font-semibold text-blue-600 mb-3">Custom Solutions</h3>
+                                        <p className="text-gray-600">Crafting bespoke AI implementations that perfectly align with your business objectives.</p>
+                                    </div>
+                                    <div className="bg-gray-50 p-6 rounded-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                                        <h3 className="text-lg font-semibold text-blue-600 mb-3">Scalable Architecture</h3>
+                                        <p className="text-gray-600">Building robust MLOps pipelines that ensure seamless scaling and deployment.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Services Section */}
+                    <section className="py-20 bg-gray-50" id="services">
+                        <div className="container mx-auto px-6">
+                            <h2 className="text-3xl font-bold text-center text-gray-900 mb-16">Our Services</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                {services.map((service, index) => (
+                                    <div key={index} className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                        <h3 className="text-xl font-semibold text-gray-900 mb-4">{service.title}</h3>
+                                        <p className="text-gray-600">{service.description}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Products Section */}
+                    <section className="py-20 bg-white" id="products">
+                        <div className="container mx-auto px-6">
+                            <div className="max-w-4xl mx-auto">
+                                <h2 className="text-4xl font-bold text-center text-gray-900 mb-8">Our Products</h2>
+                                <p className="text-xl text-gray-600 mb-12 text-center leading-relaxed">
+                                    Transforming enterprises with cutting-edge AI solutions. Our products combine the latest in 
+                                    artificial intelligence with practical business applications, delivering immediate value 
+                                    while future-proofing your operations.
+                                </p>
+                                <div className="grid md:grid-cols-2 gap-12">
+                                    {/* Teepu */}
+                                    <div className="bg-gray-50 rounded-xl p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                                        <div className="flex items-center justify-between mb-6">
+                                            <h3 className="text-2xl font-bold text-blue-600">Teepu</h3>
+                                            <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Gen AI Powered</span>
+                                        </div>
+                                        <p className="text-gray-600 mb-6">
+                                            Your smart data entry and copy-paste operator powered by Generative AI. Teepu transforms 
+                                            manual data entry into an intelligent, automated process, saving time and reducing errors.
+                                        </p>
+                                        <div className="flex justify-end">
+                                            <button className="text-blue-600 hover:text-blue-800 flex items-center transition-colors duration-300">
+                                                Learn more 
+                                                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    {/* Bank Statement Aggregator */}
+                                    <div className="bg-gray-50 rounded-xl p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                                        <div className="flex items-center justify-between mb-6">
+                                            <h3 className="text-2xl font-bold text-blue-600">Bank Statement Aggregator</h3>
+                                            <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Smart Parser</span>
+                                        </div>
+                                        <p className="text-gray-600 mb-6">
+                                            An intelligent parsing solution that automatically extracts, categorizes, and analyzes 
+                                            bank statement data. Transform complex financial documents into actionable insights.
+                                        </p>
+                                        <div className="flex justify-end">
+                                            <button className="text-blue-600 hover:text-blue-800 flex items-center transition-colors duration-300">
+                                                Learn more 
+                                                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>                    
+
+                    {/* Contact Section */}
+                    <section className="py-20 bg-white" id="contact">
+                        <div className="container mx-auto px-6">
+                            <div className="text-center">
+                                <h2 className="text-3xl font-bold text-gray-900 mb-8">Get in Touch</h2>
+                                <div className="text-xl text-gray-600">
+                                    <a href="mailto:hello@soojhai.in" className="hover:text-blue-600 transition-colors duration-300">
+                                        hello@soojhai.in
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Footer */}
+                    <footer className="bg-gray-900 text-white py-8">
+                        <div className="container mx-auto px-6 text-center">
+                            <p>&copy; {new Date().getFullYear()} SOOJH AI. All rights reserved.</p>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        // Render the app
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Website />);
+    </script>
 </body>
 </html>
